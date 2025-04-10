@@ -25,6 +25,6 @@ public class BoidSettings : ScriptableObject
     public float avoidCollisionDistance = 5.0f;
 
     [Header("Lock Y-axis")]
-    public bool lockAxisY = false;
+    public bool lockAxisY = true;
     public float positionY = 0.0f;
 }

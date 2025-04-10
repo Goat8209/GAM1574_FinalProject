@@ -40,7 +40,7 @@ public class Chicken : Animal
             peckTimer = UnityEngine.Random.Range(minPeckBreak, maxPeckBreak);
 
         }
-        Debug.Log(peckTimer);
+        //Debug.Log(peckTimer);
         peckTimer -= Time.deltaTime;
     }
 

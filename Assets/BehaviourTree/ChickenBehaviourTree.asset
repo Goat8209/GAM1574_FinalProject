@@ -18,7 +18,7 @@ MonoBehaviour:
   guid: a069ede5aeb98874bab8b131d20e82c5
   position: {x: -160, y: 668.6667}
   description: 
-  animationKey: Chicken-Idle
+  animationKey: Chicken-Run
 --- !u!114 &-4506307853465568157
 MonoBehaviour:
   m_ObjectHideFlags: 0
