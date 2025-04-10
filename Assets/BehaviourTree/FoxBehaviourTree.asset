@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7542318521092661252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e15820ae1f346a409d8efcfec7c2656, type: 3}
+  m_Name: LogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: aab39529f12bc134b935112435fb4c84
+  position: {x: -207, y: 350}
+  description: 
+  message: I am a Fox
+--- !u!114 &-3698979827044425701
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996b50878de65743a31015986ad0e36, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 84c9a2f091625944c8fd9d31f6c9343b
+  position: {x: -82, y: 181}
+  description: 
+  children:
+  - {fileID: -7542318521092661252}
+  - {fileID: 7404375653589495827}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda80f8de0d36a5488aa68e3075c989d, type: 3}
+  m_Name: FoxBehaviourTree
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 11400000, guid: 6880e7197b2816b4999aa43101400008, type: 2}
+  rootNode: {fileID: 158949722979417804}
+  treeState: 0
+  nodes:
+  - {fileID: 158949722979417804}
+  - {fileID: -3698979827044425701}
+  - {fileID: 7404375653589495827}
+  - {fileID: -7542318521092661252}
+--- !u!114 &158949722979417804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ab9cc45955e6b4a925fbb7f62d3bbe, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 6a145819d7734a447848feec8ed7c763
+  position: {x: -69, y: 45}
+  description: 
+  child: {fileID: -3698979827044425701}
+--- !u!114 &7404375653589495827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 4938c176315876344bc4e3e40f8e6fbb
+  position: {x: 10, y: 354}
+  description: 
+  animationKey: Fox-Idle

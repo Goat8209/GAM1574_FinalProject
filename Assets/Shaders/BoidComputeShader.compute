@@ -1,0 +1,45 @@
+// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+static const int kThreadGroupSize = 1024;
+
+struct Boid
+{
+float3 position;
+float3 direction;
+float3 alignment;
+float3 seperation;
+float3 cohesion;
+int nearbyFlockmates;
+};
+
+RWStructuredBuffer<Boid> boids;
+int boidsCount;
+float viewRadius;
+float avoidRadius;
+
+[numthreads(kThreadGroupSize, 1, 1)]
+void CSMain(uint3 id : SV_DispatchThreadID)
+{
+for (uint b = 0; b < boidsCount; b++)
+{
+if (id.x != b)
+{
+Boid boidB = boids[b];
+float3 difference = boidB.position - boids[id.x].position;
+float distanceSquared = difference.x * difference.x + difference.y * difference.y + difference.z * difference.z;
+
+if (distanceSquared < viewRadius * viewRadius)
+{
+boids[id.x].nearbyFlockmates++;
+boids[id.x].alignment += boidB.direction;
+boids[id.x].cohesion += boidB.position;
+
+if (distanceSquared < avoidRadius * avoidRadius)
+{
+boids[id.x].seperation -= difference / distanceSquared;
+                }
+            }
+        }
+    }
+}
