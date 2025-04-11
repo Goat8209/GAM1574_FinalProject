@@ -37,8 +37,8 @@ public class Boid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float startSpeed = (flock.settings.minSpeed + flock.settings.maxSpeed) * 0.5f;
-        velocity = transform.forward * startSpeed;
+        //float startSpeed = (flock.settings.minSpeed + flock.settings.maxSpeed) * 0.5f;
+        //velocity = transform.forward * startSpeed;
     }
 
 

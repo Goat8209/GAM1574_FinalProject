@@ -14,8 +14,10 @@ public class Chicken : Animal
     private float peckTimer = 0;
     public float minPeckBreak = 5;
     public float maxPeckBreak = 10;
-    public float peckingTime = 2;
+    public float peckingTime;
 
+    State state;
+    public State State {  get { return state; } }
 
     [SerializeField] private Blackboard blackboard;
 
@@ -24,19 +26,23 @@ public class Chicken : Animal
     private void Awake()
     {
         animalType = AnimalType.Chicken;
+        state = State.running;
     }
 
     private void Update()
     {
-        if (peckTimer <= 0)//when the time is out the chicken pecks
+        if (peckTimer <= 0 && !blackboard.GetValue<bool>("CanPeck"))//when the time is out the chicken pecks
         {
             blackboard.SetOrAddValue<bool>("CanPeck", true);
             target.IsPaused = true;
+            state = State.pecking;
         }
-        if (peckTimer <= -peckingTime)//after one second the chicken stops pecking
+
+        else if (peckTimer <= -peckingTime && blackboard.GetValue<bool>("CanPeck"))//after one second the chicken stops pecking
         {
             blackboard.SetOrAddValue<bool>("CanPeck", false);
             target.IsPaused = false;
+            state = State.running;
             peckTimer = UnityEngine.Random.Range(minPeckBreak, maxPeckBreak);
 
         }

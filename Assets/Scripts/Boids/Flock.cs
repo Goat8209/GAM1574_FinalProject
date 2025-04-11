@@ -128,6 +128,16 @@ public class Flock : MonoBehaviour
                 boidBuffer.Release();
             }
         }
+
+        if(target.GetComponent<Chicken>().State == State.pecking)
+        {
+            isPaused = true;
+        }
+        
+        else if(target.GetComponent<Chicken>().State == State.running)
+        {
+            isPaused = false;
+        }
     }
 
     void LateUpdate()
