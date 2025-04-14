@@ -15,12 +15,11 @@ public class Chick : Animal
     // Update is called once per frame
     void Update()
     {
-        if (targetChicken.State == State.pecking && !blackboard.GetValue<bool>("CanPeck"))
+        if (targetChicken.State == ChickenState.pecking && !blackboard.GetValue<bool>("CanPeck"))
         {
             blackboard.SetOrAddValue<bool>("CanPeck", true);
         }
-
-        else if (targetChicken.State == State.running && blackboard.GetValue<bool>("CanPeck"))
+        else if (targetChicken.State == ChickenState.running && blackboard.GetValue<bool>("CanPeck"))
         {
             blackboard.SetOrAddValue<bool>("CanPeck", false);
         }

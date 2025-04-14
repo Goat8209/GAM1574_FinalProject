@@ -49,6 +49,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackboard: {fileID: 11400000, guid: e2cfe977792fa614a83e59537b3dab2b, type: 2}
   settings: {fileID: 11400000, guid: 874a01f14d970d541b10d6e06d300d42, type: 2}
+  male: 0
+  minIdle: 3
+  maxIdle: 10
 --- !u!114 &7600851820263262870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +85,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0.5
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
 --- !u!1001 &4470574290876884843
 PrefabInstance:

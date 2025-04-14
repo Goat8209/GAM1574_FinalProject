@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum State : byte
+public enum ChickenState : byte
 {
     pecking,
     running
@@ -16,8 +16,8 @@ public class Chicken : Animal
     public float maxPeckBreak = 10;
     public float peckingTime;
 
-    State state;
-    public State State {  get { return state; } }
+    ChickenState state;
+    public ChickenState State {  get { return state; } }
 
     [SerializeField] private Blackboard blackboard;
 
@@ -26,7 +26,7 @@ public class Chicken : Animal
     private void Awake()
     {
         animalType = AnimalType.Chicken;
-        state = State.running;
+        state = ChickenState.running;
     }
 
     private void Update()
@@ -35,14 +35,14 @@ public class Chicken : Animal
         {
             blackboard.SetOrAddValue<bool>("CanPeck", true);
             target.IsPaused = true;
-            state = State.pecking;
+            state = ChickenState.pecking;
         }
 
         else if (peckTimer <= -peckingTime && blackboard.GetValue<bool>("CanPeck"))//after one second the chicken stops pecking
         {
             blackboard.SetOrAddValue<bool>("CanPeck", false);
             target.IsPaused = false;
-            state = State.running;
+            state = ChickenState.running;
             peckTimer = UnityEngine.Random.Range(minPeckBreak, maxPeckBreak);
 
         }

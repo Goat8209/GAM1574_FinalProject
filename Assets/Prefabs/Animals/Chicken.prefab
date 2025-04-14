@@ -47,6 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 709dca951fa628e4faae82be16693c49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minPeckBreak: 5
+  maxPeckBreak: 10
+  peckingTime: 0
   blackboard: {fileID: 11400000, guid: cdb9415166bc37c4a9cd980a7828e565, type: 2}
 --- !u!114 &6663389319277980707
 MonoBehaviour:
@@ -74,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   path: {fileID: 0}
-  speed: 8
+  speed: 12
 --- !u!1001 &2874522693159098949
 PrefabInstance:
   m_ObjectHideFlags: 0

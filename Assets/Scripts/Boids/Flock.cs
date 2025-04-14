@@ -129,12 +129,12 @@ public class Flock : MonoBehaviour
             }
         }
 
-        if(target.GetComponent<Chicken>().State == State.pecking)
+        if(target.GetComponent<Chicken>().State == ChickenState.pecking)
         {
             isPaused = true;
         }
         
-        else if(target.GetComponent<Chicken>().State == State.running)
+        else if(target.GetComponent<Chicken>().State == ChickenState.running)
         {
             isPaused = false;
         }
