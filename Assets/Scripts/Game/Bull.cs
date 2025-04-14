@@ -26,6 +26,10 @@ public class Bull : Animal
     public float maxIdle;
 
     private float hunger = 10;
+    private float minHunger = 20;
+    private float maxHunger = 30;
+
+    private Vector3[] haybales = { new Vector3(252.45f, 0, 396), new Vector3(239.21f, 0, 393.38f), new Vector3(228.73f, 0, 396.89f) };
 
     private BullState state;
 
@@ -35,105 +39,113 @@ public class Bull : Animal
     {
         animalType = AnimalType.Bull;
         GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
+        hunger = Random.Range(minHunger, maxHunger);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) < 1 )
-        //{
-        //    if (idleTimer < 0)
-        //    {
-        //        blackboard.SetValue<bool>("", true);
-        //        GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
-        //        idleTimer = Random.Range(minIdle, maxIdle);
-        //    }
-        //        idleTimer -= Time.deltaTime;
-        //}
-
         if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 1)
         {
+            if (state == BullState.Eating)
+            {
+                hunger = hunger = Random.Range(minHunger, maxHunger);
+            }
             if (state != BullState.Idle)
             {
-                stateToBlackboard(BullState.Idle);
+                SetState(BullState.Idle);
             }
             state = BullState.Idle;
         }
 
         if (idleTimer <= 0)
         {
-            state = BullState.Walking;
+            if (state != BullState.Walking)
+            {
+                GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
+                SetState(BullState.Walking);
+            }
             idleTimer = Random.Range(minIdle, maxIdle);
         }
 
-        if (Vector3.Distance(transform.position, partner.transform.position) <= 10)
-        {
-            state = BullState.Breeding;
-        }
+        //if (Vector3.Distance(transform.position, partner.transform.position) <= 10)
+        //{
+        //    if (state != BullState.Breeding)
+        //    {
+        //        SetState(BullState.Breeding);
+        //    }
+        //}
 
         if (hunger <= 0)
         {
-            state = BullState.Eating;
+            if (state != BullState.Eating)
+            {
+                SetState(BullState.Eating);
+                GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];
+
+            }
+
         }
 
         switch (state)
         {
             case BullState.Idle:
                 idleTimer -= Time.deltaTime;
-                GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
                 break;
 
             case BullState.Walking:
-                stateToBlackboard(BullState.Walking);
 
-
+                hunger -= Time.deltaTime;
                 break;
 
             case BullState.Breeding:
-                stateToBlackboard(BullState.Breeding);
 
                 break;
 
             case BullState.Eating:
-                stateToBlackboard(BullState.Eating);
+                
 
                 break;
         }
-
     }
     protected override void OnStart()
     {
         Initialize(settings);
     }
 
-    private void stateToBlackboard(BullState state)
+    private void SetState(BullState newState)
     {
-        //switch (state)
-        //{
-        //    case BullState.Idle:
-        //        blackboard.SetValue<bool>("Idle", true);
-        //        blackboard.SetValue<bool>("Walking", false);
-        //        blackboard.SetValue<bool>("Breeding", false);
-        //        blackboard.SetValue<bool>("Eating", false);
-        //        break;
-        //    case BullState.Walking:
-        //        blackboard.SetValue<bool>("Idle", false);
-        //        blackboard.SetValue<bool>("Walking", true);
-        //        blackboard.SetValue<bool>("Breeding", false);
-        //        blackboard.SetValue<bool>("Eating", false);
-        //        break;
-        //    case BullState.Breeding:
-        //        blackboard.SetValue<bool>("Idle", false);
-        //        blackboard.SetValue<bool>("Walking", false);
-        //        blackboard.SetValue<bool>("Breeding", true);
-        //        blackboard.SetValue<bool>("Eating", false);
-        //        break;
-        //    case BullState.Eating:
-        //        blackboard.SetValue<bool>("Idle", false);
-        //        blackboard.SetValue<bool>("Walking", false);
-        //        blackboard.SetValue<bool>("Breeding", false);
-        //        blackboard.SetValue<bool>("Eating", true);
-        //        break;
-        //}
+        switch (newState)
+        {
+            case BullState.Idle:
+                state = BullState.Idle;
+                blackboard.SetValue("State", "Idle");
+                //blackboard.SetValue<bool>("Idle", true);
+                //blackboard.SetValue<bool>("Walking", false);
+                //blackboard.SetValue<bool>("Breeding", false);
+                //blackboard.SetValue<bool>("Eating", false);
+                break;
+            case BullState.Walking:
+                state = BullState.Walking;
+                //blackboard.SetValue<bool>("Idle", false);
+                //blackboard.SetValue<bool>("Walking", true);
+                //blackboard.SetValue<bool>("Breeding", false);
+                //blackboard.SetValue<bool>("Eating", false);
+                break;
+            case BullState.Breeding:
+                state = BullState.Breeding;
+                //blackboard.SetValue<bool>("Idle", false);
+                //blackboard.SetValue<bool>("Walking", false);
+                //blackboard.SetValue<bool>("Breeding", true);
+                //blackboard.SetValue<bool>("Eating", false);
+                break;
+            case BullState.Eating:
+                state = BullState.Eating;
+                //blackboard.SetValue<bool>("Idle", false);
+                //blackboard.SetValue<bool>("Walking", false);
+                //blackboard.SetValue<bool>("Breeding", false);
+                //blackboard.SetValue<bool>("Eating", true);
+                break;
+        }
     }
 }

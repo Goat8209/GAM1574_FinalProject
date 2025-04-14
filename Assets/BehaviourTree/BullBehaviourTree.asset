@@ -39,6 +39,7 @@ MonoBehaviour:
   - {fileID: 1994118453133332709}
   - {fileID: 7405047676042726256}
   - {fileID: 5796683818387440284}
+  - {fileID: 2525148370823151225}
 --- !u!114 &1994118453133332709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,6 +59,27 @@ MonoBehaviour:
   position: {x: -116, y: 272}
   description: 
   message: I am a Bull
+--- !u!114 &2525148370823151225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 7db4d35f78375584f8ab043380beb167
+  position: {x: -214, y: 551}
+  description: 
+  childTrue: {fileID: 0}
+  childFalse: {fileID: 0}
+  conditionKey: 
 --- !u!114 &5796683818387440284
 MonoBehaviour:
   m_ObjectHideFlags: 0

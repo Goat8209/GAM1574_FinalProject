@@ -19,14 +19,16 @@ MonoBehaviour:
   boolData:
     entries:
     - key: Idle
-      value: 0
+      value: 1
     - key: Walking
       value: 0
     - key: Breeding
-      value: 1
+      value: 0
     - key: Eating
       value: 0
   vector3Data:
     entries: []
   stringData:
-    entries: []
+    entries:
+    - key: State
+      value: 

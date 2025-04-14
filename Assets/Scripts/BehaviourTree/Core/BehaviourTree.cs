@@ -123,6 +123,17 @@ public class BehaviourTree : ScriptableObject
             children.Add(conditionNode.childFalse);
         }
 
+        ConditionNodeString conditionNodeString = parent as ConditionNodeString;
+        if (conditionNodeString && conditionNodeString.childTrue != null)
+        {
+            children.Add(conditionNodeString.childTrue);
+        }
+
+        if (conditionNodeString && conditionNodeString.childFalse != null)
+        {
+            children.Add(conditionNodeString.childFalse);
+        }
+
         return children;
     }
 
