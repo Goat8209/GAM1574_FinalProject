@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5630948465649714019}
   - component: {fileID: 777278395649038225}
   - component: {fileID: -2229988604254829550}
+  - component: {fileID: 8801816230094092290}
   m_Layer: 13
   m_Name: Chick
   m_TagString: Chick
@@ -47,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackboard: {fileID: 11400000, guid: cdb9415166bc37c4a9cd980a7828e565, type: 2}
+  targetChicken: {fileID: 0}
 --- !u!114 &-2229988604254829550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59,6 +61,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c621970cd343794da5f6e5bf683ace7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1818360609 &8801816230094092290
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662103004925642877}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 0
+  m_AffectRotationZ: 1
+  m_Active: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 5630948465649714019}
+    weight: 1
 --- !u!1001 &2752359761986807375
 PrefabInstance:
   m_ObjectHideFlags: 0

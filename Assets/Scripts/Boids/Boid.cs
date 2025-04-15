@@ -49,11 +49,11 @@ public class Boid : MonoBehaviour
         Vector3 acceleration = Vector3.zero;
         Vector3 location = transform.position;
 
-        // If there's a target set, steer towards it
-        if (flock.target != null)
+        // If there's a animal set, steer towards it
+        if (flock.animal != null)
         {
-            Vector3 targetDisplacement = (flock.target.transform.position - location);
-            acceleration = SteerTowards(targetDisplacement) * flock.settings.targetWeight;
+            Vector3 animalDisplacement = (flock.animal.transform.position - location);
+            acceleration = SteerTowards(animalDisplacement) * flock.settings.targetWeight;
         }
 
         // Ensure the nearby flockmates value is not zero, to avoid a divide by zero

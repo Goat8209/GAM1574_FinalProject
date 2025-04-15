@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a360a5c805cc1c43b569218a4430240, type: 3}
-  m_Name: Bull1Blackboard
+  m_Name: Bull2Blackboard
   m_EditorClassIdentifier: 
   intData:
     entries: []
@@ -19,9 +19,9 @@ MonoBehaviour:
   boolData:
     entries:
     - key: Idle
-      value: 0
-    - key: Walking
       value: 1
+    - key: Walking
+      value: 0
     - key: Breeding
       value: 0
     - key: Eating

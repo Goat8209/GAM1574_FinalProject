@@ -10,7 +10,8 @@ public enum AnimalType
     Alpaca,
     Bull,
     Donkey,
-    Fox
+    Fox,
+    Caff
 }
 
 public class Animal : MonoBehaviour

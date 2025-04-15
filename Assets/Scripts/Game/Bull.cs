@@ -18,6 +18,7 @@ public class Bull : Animal
     [SerializeField] private Blackboard blackboard;
     [SerializeField] private AnimalSettings settings;
 
+    public bool debugText;
     public bool male;
     public Bull partner;
 
@@ -32,6 +33,8 @@ public class Bull : Animal
     private Vector3[] haybales = { new Vector3(252.45f, 0, 396), new Vector3(239.21f, 0, 393.38f), new Vector3(228.73f, 0, 396.89f) };
 
     private BullState state;
+
+    Target target;
 
     public BullState State { get { return state; } }
 
@@ -68,23 +71,22 @@ public class Bull : Animal
             idleTimer = Random.Range(minIdle, maxIdle);
         }
 
-        //if (Vector3.Distance(transform.position, partner.transform.position) <= 10)
-        //{
-        //    if (state != BullState.Breeding)
-        //    {
-        //        SetState(BullState.Breeding);
-        //    }
-        //}
+        if (Vector3.Distance(transform.position, partner.transform.position) <= 10)
+        {
+            if (state != BullState.Breeding)
+            {
+                GetComponent<NavMeshAgent>().isStopped = true;
+                SetState(BullState.Breeding);
+            }
+        }
 
         if (hunger <= 0)
         {
             if (state != BullState.Eating)
             {
                 SetState(BullState.Eating);
-                GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];
-
+                GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];//picks a random haybale to eat from
             }
-
         }
 
         switch (state)
@@ -94,17 +96,13 @@ public class Bull : Animal
                 break;
 
             case BullState.Walking:
-
                 hunger -= Time.deltaTime;
                 break;
 
             case BullState.Breeding:
-
                 break;
 
             case BullState.Eating:
-                
-
                 break;
         }
     }
@@ -119,32 +117,32 @@ public class Bull : Animal
         {
             case BullState.Idle:
                 state = BullState.Idle;
-                blackboard.SetValue("State", "Idle");
-                //blackboard.SetValue<bool>("Idle", true);
-                //blackboard.SetValue<bool>("Walking", false);
-                //blackboard.SetValue<bool>("Breeding", false);
-                //blackboard.SetValue<bool>("Eating", false);
+                //blackboard.SetValue("State", "Idle");
+                blackboard.SetValue<bool>("Idle", true);
+                blackboard.SetValue<bool>("Walking", false);
+                blackboard.SetValue<bool>("Breeding", false);
+                blackboard.SetValue<bool>("Eating", false);
                 break;
             case BullState.Walking:
                 state = BullState.Walking;
-                //blackboard.SetValue<bool>("Idle", false);
-                //blackboard.SetValue<bool>("Walking", true);
-                //blackboard.SetValue<bool>("Breeding", false);
-                //blackboard.SetValue<bool>("Eating", false);
+                blackboard.SetValue<bool>("Idle", false);
+                blackboard.SetValue<bool>("Walking", true);
+                blackboard.SetValue<bool>("Breeding", false);
+                blackboard.SetValue<bool>("Eating", false);
                 break;
             case BullState.Breeding:
                 state = BullState.Breeding;
-                //blackboard.SetValue<bool>("Idle", false);
-                //blackboard.SetValue<bool>("Walking", false);
-                //blackboard.SetValue<bool>("Breeding", true);
-                //blackboard.SetValue<bool>("Eating", false);
+                blackboard.SetValue<bool>("Idle", false);
+                blackboard.SetValue<bool>("Walking", false);
+                blackboard.SetValue<bool>("Breeding", true);
+                blackboard.SetValue<bool>("Eating", false);
                 break;
             case BullState.Eating:
                 state = BullState.Eating;
-                //blackboard.SetValue<bool>("Idle", false);
-                //blackboard.SetValue<bool>("Walking", false);
-                //blackboard.SetValue<bool>("Breeding", false);
-                //blackboard.SetValue<bool>("Eating", true);
+                blackboard.SetValue<bool>("Idle", false);
+                blackboard.SetValue<bool>("Walking", false);
+                blackboard.SetValue<bool>("Breeding", false);
+                blackboard.SetValue<bool>("Eating", true);
                 break;
         }
     }

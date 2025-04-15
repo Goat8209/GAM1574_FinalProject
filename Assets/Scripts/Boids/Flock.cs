@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 
 public class Flock : MonoBehaviour
@@ -10,7 +11,7 @@ public class Flock : MonoBehaviour
     public ComputeShader computeShader;
     public BoidSettings settings;
     public GameObject boidPrefab;
-    public Target target;
+    public Animal animal;
     public int boidsToSpawn = 100;
     public float spawnRadius = 10.0f;
 
@@ -70,11 +71,11 @@ public class Flock : MonoBehaviour
         return boid;
     }
 
-    public void SpawnFlock(ComputeShader computeShader, BoidSettings settings, Target target)
+    public void SpawnFlock(ComputeShader computeShader, BoidSettings settings, Animal animal)
     {
         this.computeShader = computeShader;
         this.settings = settings;
-        this.target = target;
+        this.animal = animal;
     }
 
     // Update is called once per frame
@@ -129,14 +130,30 @@ public class Flock : MonoBehaviour
             }
         }
 
-        if(target.GetComponent<Chicken>().State == ChickenState.pecking)
+        if (animal.GetAnimalType == AnimalType.Chicken)
         {
-            isPaused = true;
+            if (animal.GetComponent<Chicken>().State == ChickenState.pecking)
+            {
+                isPaused = true;
+            }
+
+            else if (animal.GetComponent<Chicken>().State == ChickenState.running)
+            {
+                isPaused = false;
+            }
         }
-        
-        else if(target.GetComponent<Chicken>().State == ChickenState.running)
+        if (animal.GetAnimalType == AnimalType.Bull)
         {
-            isPaused = false;
+            switch (animal.GetComponent<Bull>().State)
+            {
+                case BullState.Idle:
+                case BullState.Breeding:
+                    isPaused = true;
+                    break;
+                default:
+                    isPaused = false;
+                    break;
+            }
         }
     }
 

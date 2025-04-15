@@ -113,7 +113,7 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 15f004612eb3ea640ae4c4a875871774
-  position: {x: -387.33334, y: 666.6666}
+  position: {x: -386.99997, y: 665.9358}
   description: 
   animationKey: Chicken-IdlePeck
 --- !u!114 &-647594144758708454
