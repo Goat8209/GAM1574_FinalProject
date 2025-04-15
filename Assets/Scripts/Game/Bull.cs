@@ -19,12 +19,13 @@ public class Bull : Animal
     [SerializeField] private AnimalSettings settings;
 
     public bool debugText;
+
     public bool male;
     public Bull partner;
 
-    private float idleTimer = 10;
-    public float minIdle;
-    public float maxIdle;
+    private float idleTimer;
+    private float minIdle = 3;
+    private float maxIdle = 10;
 
     private float hunger = 10;
     private float minHunger = 20;
@@ -34,8 +35,6 @@ public class Bull : Animal
 
     private BullState state;
 
-    Target target;
-
     public BullState State { get { return state; } }
 
     private void Awake()
@@ -43,14 +42,15 @@ public class Bull : Animal
         animalType = AnimalType.Bull;
         GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
         hunger = Random.Range(minHunger, maxHunger);
+        SetState(BullState.Idle);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 1)
+        if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 1)//sets state to idle
         {
-            if (state == BullState.Eating)
+            if (state == BullState.Eating)//if it reaches the haybale it can eat.
             {
                 hunger = hunger = Random.Range(minHunger, maxHunger);
             }
@@ -58,7 +58,6 @@ public class Bull : Animal
             {
                 SetState(BullState.Idle);
             }
-            state = BullState.Idle;
         }
 
         if (idleTimer <= 0)
@@ -105,6 +104,11 @@ public class Bull : Animal
             case BullState.Eating:
                 break;
         }
+
+        if (debugText == true)//outputs the states
+        {
+            Debug.Log(this.gameObject.name.ToString() + "\n State:" + state + " Idle:" + blackboard.GetValue<bool>("Idle").ToString() + " Walking:" + blackboard.GetValue<bool>("Walking").ToString() + " Breeding:" + blackboard.GetValue<bool>("Breeding").ToString() + " Eating:" + blackboard.GetValue<bool>("Eating").ToString());
+        }
     }
     protected override void OnStart()
     {
@@ -120,15 +124,15 @@ public class Bull : Animal
                 //blackboard.SetValue("State", "Idle");
                 blackboard.SetValue<bool>("Idle", true);
                 blackboard.SetValue<bool>("Walking", false);
-                blackboard.SetValue<bool>("Breeding", false);
                 blackboard.SetValue<bool>("Eating", false);
+                blackboard.SetValue<bool>("Breeding", false);
                 break;
             case BullState.Walking:
                 state = BullState.Walking;
                 blackboard.SetValue<bool>("Idle", false);
                 blackboard.SetValue<bool>("Walking", true);
-                blackboard.SetValue<bool>("Breeding", false);
                 blackboard.SetValue<bool>("Eating", false);
+                blackboard.SetValue<bool>("Breeding", false);
                 break;
             case BullState.Breeding:
                 state = BullState.Breeding;
