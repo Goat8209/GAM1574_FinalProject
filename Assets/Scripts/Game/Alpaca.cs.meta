@@ -3,7 +3,11 @@ guid: 1feda5a377499574396230a3e1c31436
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - blackboard: {instanceID: 0}
+  - settings: {instanceID: 0}
+  - spitPrefab: {fileID: 8686470253182517264, guid: 626e167514714f5468e603d155f4b58e, type: 3}
+  - donk: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

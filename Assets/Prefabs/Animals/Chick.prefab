@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 777278395649038225}
   - component: {fileID: -2229988604254829550}
   - component: {fileID: 8801816230094092290}
+  - component: {fileID: 454489461064573964}
   m_Layer: 13
   m_Name: Chick
   m_TagString: Chick
@@ -81,6 +82,19 @@ RotationConstraint:
   m_Sources:
   - sourceTransform: {fileID: 5630948465649714019}
     weight: 1
+--- !u!114 &454489461064573964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662103004925642877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c732336031ec9d94b8d487cd200e5f90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tree: {fileID: 0}
 --- !u!1001 &2752359761986807375
 PrefabInstance:
   m_ObjectHideFlags: 0
