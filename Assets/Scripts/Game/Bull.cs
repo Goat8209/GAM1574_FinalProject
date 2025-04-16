@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Rendering.Universal;
@@ -27,9 +28,19 @@ public class Bull : Animal
     private float minIdle = 3;
     private float maxIdle = 10;
 
-    private float hunger = 10;
-    private float minHunger = 20;
-    private float maxHunger = 30;
+    private int hunger;
+    private int minHunger = 3;
+    private int maxHunger = 5;
+    private float eatingTimer;
+    private float minEating = 3;
+    private float maxEating = 6;
+
+    private float breedingDistance = 10;
+    private float breedingRefreshTimer;
+    private float breedingRefreshTime = 30;
+    private float breedingTimer;
+    private float breedingTime = 10;
+    public Flock caffs;
 
     private Vector3[] haybales = { new Vector3(252.45f, 0, 396), new Vector3(239.21f, 0, 393.38f), new Vector3(228.73f, 0, 396.89f) };
 
@@ -40,51 +51,28 @@ public class Bull : Animal
     private void Awake()
     {
         animalType = AnimalType.Bull;
-        GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
-        hunger = Random.Range(minHunger, maxHunger);
         SetState(BullState.Idle);
+        blackboard.SetValue<bool>("Walking", false);
+        blackboard.SetValue<bool>("Eating", false);
+        blackboard.SetValue<bool>("Breeding", false);
+        hunger = Random.Range(minHunger, maxHunger);
+        breedingRefreshTimer = breedingRefreshTime;
+        breedingTimer = breedingRefreshTime;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 1)//sets state to idle
+        if (state != BullState.Breeding)
         {
-            if (state == BullState.Eating)//if it reaches the haybale it can eat.
-            {
-                hunger = hunger = Random.Range(minHunger, maxHunger);
-            }
-            if (state != BullState.Idle)
-            {
-                SetState(BullState.Idle);
-            }
-        }
+            breedingRefreshTimer -= Time.deltaTime;
 
-        if (idleTimer <= 0)
-        {
-            if (state != BullState.Walking)
+            if (breedingRefreshTimer <= 0)//if the cows are close enough and they can breed they do
             {
-                GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
-                SetState(BullState.Walking);
-            }
-            idleTimer = Random.Range(minIdle, maxIdle);
-        }
-
-        if (Vector3.Distance(transform.position, partner.transform.position) <= 10)
-        {
-            if (state != BullState.Breeding)
-            {
-                GetComponent<NavMeshAgent>().isStopped = true;
-                SetState(BullState.Breeding);
-            }
-        }
-
-        if (hunger <= 0)
-        {
-            if (state != BullState.Eating)
-            {
-                SetState(BullState.Eating);
-                GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];//picks a random haybale to eat from
+                if (Vector3.Distance(partner.transform.position, transform.position) <= breedingDistance)
+                {
+                    SetState(BullState.Breeding);
+                }
             }
         }
 
@@ -92,22 +80,59 @@ public class Bull : Animal
         {
             case BullState.Idle:
                 idleTimer -= Time.deltaTime;
+                if (idleTimer <= 0)
+                {
+                    SetState(BullState.Walking);
+                }
                 break;
 
             case BullState.Walking:
-                hunger -= Time.deltaTime;
-                break;
+                if (hunger <= 0)
+                {
+                    GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];//picks a random haybale to eat from and walks to it
+                }
 
-            case BullState.Breeding:
+                if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 5)//gets to its destination/going to haybale
+                {
+                    if (hunger <= 0)// if the cow is needs to eat set state to eating
+                    {
+                        if (state != BullState.Eating)
+                        {
+                            SetState(BullState.Eating);
+                        }
+                    }
+                    else if (state != BullState.Idle)
+                    {
+                        SetState(BullState.Idle);
+                    }
+                }
                 break;
 
             case BullState.Eating:
+                eatingTimer -= Time.deltaTime;
+                if (eatingTimer <= 0)
+                {
+                    GetComponent<NavMeshAgent>().isStopped = false;
+                    SetState(BullState.Walking);
+                }
+                break;
+
+            case BullState.Breeding:
+                breedingTimer -= Time.deltaTime;
+                if (breedingTimer <= 0)
+                {
+                    if (partner.caffs != null)//add a caff
+                    {
+                        partner.caffs.boidsToSpawn++;
+                    }
+                    SetState(BullState.Walking);
+                }
                 break;
         }
 
         if (debugText == true)//outputs the states
         {
-            Debug.Log(this.gameObject.name.ToString() + "\n State:" + state + " Idle:" + blackboard.GetValue<bool>("Idle").ToString() + " Walking:" + blackboard.GetValue<bool>("Walking").ToString() + " Breeding:" + blackboard.GetValue<bool>("Breeding").ToString() + " Eating:" + blackboard.GetValue<bool>("Eating").ToString());
+            Debug.Log(this.gameObject.name.ToString() + "\n State:" + state + " BreedingRefreshTimer:" + breedingRefreshTimer.ToString() + " Hunger:" + hunger.ToString() + " IdleTimer:" + idleTimer.ToString() + " EatingTimer:" + eatingTimer.ToString());
         }
     }
     protected override void OnStart()
@@ -117,36 +142,55 @@ public class Bull : Animal
 
     private void SetState(BullState newState)
     {
+        BullState lastState = state;
+        switch (lastState)
+        {
+            case BullState.Idle:
+                blackboard.SetValue<bool>("Idle", false);
+                break;
+
+            case BullState.Walking:
+                blackboard.SetValue<bool>("Walking", false);
+                break;
+            case BullState.Eating:
+                blackboard.SetValue<bool>("Eating", false);
+                break;
+            case BullState.Breeding:
+                blackboard.SetValue<bool>("Breeding", false);
+                break;
+        }
+
         switch (newState)
         {
             case BullState.Idle:
                 state = BullState.Idle;
-                //blackboard.SetValue("State", "Idle");
                 blackboard.SetValue<bool>("Idle", true);
-                blackboard.SetValue<bool>("Walking", false);
-                blackboard.SetValue<bool>("Eating", false);
-                blackboard.SetValue<bool>("Breeding", false);
+                idleTimer = Random.Range(minIdle, maxIdle);
                 break;
+
             case BullState.Walking:
                 state = BullState.Walking;
-                blackboard.SetValue<bool>("Idle", false);
                 blackboard.SetValue<bool>("Walking", true);
-                blackboard.SetValue<bool>("Eating", false);
-                blackboard.SetValue<bool>("Breeding", false);
+                GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
+                GetComponent<NavMeshAgent>().isStopped = false;
+                hunger--;
                 break;
-            case BullState.Breeding:
-                state = BullState.Breeding;
-                blackboard.SetValue<bool>("Idle", false);
-                blackboard.SetValue<bool>("Walking", false);
-                blackboard.SetValue<bool>("Breeding", true);
-                blackboard.SetValue<bool>("Eating", false);
-                break;
+
             case BullState.Eating:
                 state = BullState.Eating;
-                blackboard.SetValue<bool>("Idle", false);
-                blackboard.SetValue<bool>("Walking", false);
-                blackboard.SetValue<bool>("Breeding", false);
                 blackboard.SetValue<bool>("Eating", true);
+                eatingTimer = Random.Range(minEating, maxEating);
+                hunger = Random.Range(minHunger, maxHunger);
+                GetComponent<NavMeshAgent>().isStopped = true;
+                break;
+
+            case BullState.Breeding:
+                state = BullState.Breeding;
+                blackboard.SetValue<bool>("Breeding", true);
+                GetComponent<NavMeshAgent>().isStopped = true;
+                breedingTimer = breedingTime;
+                breedingRefreshTimer = breedingRefreshTime;
+                //point at other bull
                 break;
         }
     }

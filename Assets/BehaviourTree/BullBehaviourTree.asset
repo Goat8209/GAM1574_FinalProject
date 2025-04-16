@@ -16,9 +16,9 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 10155bd8b59dff04b8eec9ed411d8580
-  position: {x: 63.158752, y: 588.00006}
+  position: {x: 12, y: 590}
   description: 
-  animationKey: IdleHeadlow
+  animationKey: Bull-Eating
 --- !u!114 &-8054404201210182674
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55,7 +55,7 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 60a4e09809ae19b4b811bf82e5d80842
-  position: {x: 335, y: 714}
+  position: {x: 272, y: 719}
   description: 
   message: How!?
 --- !u!114 &-7595389239467316442
@@ -95,7 +95,7 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 0351d9d923b27404ca7165b1e98db398
-  position: {x: -154, y: 332}
+  position: {x: -169, y: 334}
   description: 
   animationKey: Bull-Idle
 --- !u!114 &-6405543768349174490
@@ -133,11 +133,11 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 641b74f7e970a194380b0b5600a9d561
-  position: {x: 109, y: 462}
+  position: {x: 73, y: 462}
   description: 
   childTrue: {fileID: -8193242102487457185}
   childFalse: {fileID: 5997725423829502027}
-  conditionKey: Breeding
+  conditionKey: Eating
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +205,7 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 5ef7d921f6f9e744d9f03f6516242c2b
-  position: {x: -49, y: 459}
+  position: {x: -79, y: 462}
   description: 
   animationKey: Bull-Walk
 --- !u!114 &1994118453133332709
@@ -243,7 +243,7 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 7db4d35f78375584f8ab043380beb167
-  position: {x: 2, y: 331}
+  position: {x: -17, y: 334}
   description: 
   childTrue: {fileID: 1346073335258375784}
   childFalse: {fileID: -6304565248527363996}
@@ -264,11 +264,11 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 93d12b51aafa92f4bb39a1c887133812
-  position: {x: 228, y: 587}
+  position: {x: 165.47899, y: 590}
   description: 
   childTrue: {fileID: 6926300705773638324}
   childFalse: {fileID: -7906056793061755580}
-  conditionKey: Eating
+  conditionKey: Breeding
 --- !u!114 &6926300705773638324
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,9 +285,9 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 989e4d11b13e96e46849a226c7a00b02
-  position: {x: 179, y: 713}
+  position: {x: 116, y: 719}
   description: 
-  animationKey: Bull-Eating
+  animationKey: Bull-IdleHeadlow
 --- !u!114 &7405047676042726256
 MonoBehaviour:
   m_ObjectHideFlags: 0

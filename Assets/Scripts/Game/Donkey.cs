@@ -14,6 +14,7 @@ public enum DonkeyState : byte
     Eating,
     Attacking
 }
+
 public class Donkey : Animal
 {
     [SerializeField] private Blackboard blackboard;
@@ -27,9 +28,9 @@ public class Donkey : Animal
     private float maxIdle = 10;
 
     //while the donkey walks it gets hungry
-    private float hunger;
-    private float minHunger = 20;
-    private float maxHunger = 30;
+    private int hunger;
+    private int minHunger = 4;
+    private int maxHunger = 6;
     private float eatingTimer;
     private float minEating = 3;
     private float maxEating = 6;
@@ -42,10 +43,16 @@ public class Donkey : Animal
     public List<Fox> foxList;
     private Fox targetFox;
 
+    private float attackTimer;
+    private float minAttackTime = 5;
+    private float maxAttackTime = 10; 
+
     private float attackSpeed = 7;
     private float walkSpeed = 3.5f;
 
     private DonkeyState state;
+
+    public DonkeyState State { get { return state; } }
 
     private Vector3[] haybales = { new Vector3(252.45f, 0, 396), new Vector3(239.21f, 0, 393.38f), new Vector3(228.73f, 0, 396.89f) };
 
@@ -53,6 +60,9 @@ public class Donkey : Animal
     {
         animalType = AnimalType.Donkey;
         SetState(DonkeyState.Idle);
+        blackboard.SetValue<bool>("Walking", false);
+        blackboard.SetValue<bool>("Eating", false);
+        blackboard.SetValue<bool>("Attacking", false);
         hunger = Random.Range(minHunger, maxHunger);
         sanity = Random.Range(minSanity, maxSanity);
         targetFox = foxList[0];
@@ -91,7 +101,6 @@ public class Donkey : Animal
                 break;
 
             case DonkeyState.Walking:
-                hunger -= Time.deltaTime;
                 if (hunger <= 0)
                 {
                     GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];//picks a random haybale to eat from and walks to it
@@ -123,6 +132,7 @@ public class Donkey : Animal
                 break;
 
             case DonkeyState.Attacking:
+                attackTimer -= Time.deltaTime;
                 if (foxList.Count > 0)
                 {
                     targetFox = foxList[0];
@@ -135,7 +145,7 @@ public class Donkey : Animal
                     }
                 }
                 GetComponent<NavMeshAgent>().destination = targetFox.transform.position;
-                if (Vector3.Distance(transform.position, targetFox.transform.position) < 5)
+                if (Vector3.Distance(transform.position, targetFox.transform.position) < 5 || attackTimer <= 0)
                 {
                     SetState(DonkeyState.Walking);
                 }
@@ -146,7 +156,7 @@ public class Donkey : Animal
         {
             Debug.Log(this.gameObject.name.ToString() + " Debug:" +
                 "\nState:" + state + " Idle:" + blackboard.GetValue<bool>("Idle").ToString() + " Walking:" + blackboard.GetValue<bool>("Walking").ToString() + " Eating:" + blackboard.GetValue<bool>("Eating").ToString() + " Attacking:" + blackboard.GetValue<bool>("Attacking").ToString());
-            Debug.Log("sanity:" + sanity.ToString() + "targetFox position:" + targetFox.transform.position.x.ToString() + "," + targetFox.transform.position.y.ToString() + "," + targetFox.transform.position.z.ToString());
+            Debug.Log("sanity:" + sanity.ToString() + " Attack Timer:" + attackTimer + " targetFox distance:" + Vector3.Distance(targetFox.transform.position,transform.position).ToString());
         }
     }
 
@@ -188,6 +198,7 @@ public class Donkey : Animal
                 blackboard.SetValue<bool>("Walking", true);
                 GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
                 GetComponent<NavMeshAgent>().speed = walkSpeed;
+                hunger--;
                 break;
 
             case DonkeyState.Eating:
@@ -203,6 +214,7 @@ public class Donkey : Animal
                 blackboard.SetValue<bool>("Attacking", true);
                 GetComponent<NavMeshAgent>().speed = attackSpeed;
                 sanity = Random.Range(-minSanity, maxSanity);
+                attackTimer = Random.Range(minAttackTime, maxAttackTime);
                 break;
         }
     }

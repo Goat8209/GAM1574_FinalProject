@@ -16,9 +16,30 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: aab39529f12bc134b935112435fb4c84
-  position: {x: -207, y: 350}
+  position: {x: -10.99999, y: 189.09593}
   description: 
   message: I am a Fox
+--- !u!114 &-7004376277972630558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: cf387a75bb889324baafc3e8b9aac213
+  position: {x: 89, y: 677}
+  description: 
+  childTrue: {fileID: -1655303665059451928}
+  childFalse: {fileID: 5945741184141150991}
+  conditionKey: Running
 --- !u!114 &-3698979827044425701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35,11 +56,71 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 84c9a2f091625944c8fd9d31f6c9343b
-  position: {x: -82, y: 181}
+  position: {x: -88, y: 60}
   description: 
   children:
+  - {fileID: -3185422121757240168}
   - {fileID: -7542318521092661252}
-  - {fileID: 7404375653589495827}
+--- !u!114 &-3185422121757240168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35fc7a87a996db4458d5b764e7044887, type: 3}
+  m_Name: RepeaterNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: c3c9547e9a8fadc48bbe22008cf6eaac
+  position: {x: -164.9999, y: 189.09593}
+  description: 
+  child: {fileID: -2443709851759063649}
+  repeatCount: -1
+--- !u!114 &-2443709851759063649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 66e46c67a2ef4184c83e44e9b8b52fdb
+  position: {x: -194, y: 290}
+  description: 
+  childTrue: {fileID: 4641027980294482273}
+  childFalse: {fileID: 6000074637834454655}
+  conditionKey: Idle
+--- !u!114 &-1655303665059451928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: d5e92fa4ee36fad4e88db59175cd9a45
+  position: {x: 42, y: 804}
+  description: 
+  animationKey: Fox-Gallop
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,8 +139,17 @@ MonoBehaviour:
   nodes:
   - {fileID: 158949722979417804}
   - {fileID: -3698979827044425701}
-  - {fileID: 7404375653589495827}
   - {fileID: -7542318521092661252}
+  - {fileID: -2443709851759063649}
+  - {fileID: 4641027980294482273}
+  - {fileID: 6000074637834454655}
+  - {fileID: 447148171213676215}
+  - {fileID: 8103275181752082760}
+  - {fileID: 767409840759696918}
+  - {fileID: -7004376277972630558}
+  - {fileID: -1655303665059451928}
+  - {fileID: 5945741184141150991}
+  - {fileID: -3185422121757240168}
 --- !u!114 &158949722979417804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,10 +166,31 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 6a145819d7734a447848feec8ed7c763
-  position: {x: -69, y: 45}
+  position: {x: -88, y: -47}
   description: 
   child: {fileID: -3698979827044425701}
---- !u!114 &7404375653589495827
+--- !u!114 &447148171213676215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 5a8a10c62f35fff489ebc626585234a1
+  position: {x: -6, y: 548}
+  description: 
+  childTrue: {fileID: 767409840759696918}
+  childFalse: {fileID: -7004376277972630558}
+  conditionKey: Eating
+--- !u!114 &767409840759696918
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,7 +205,85 @@ MonoBehaviour:
   state: 0
   isStarted: 0
   blackboard: {fileID: 0}
-  guid: 4938c176315876344bc4e3e40f8e6fbb
-  position: {x: 10, y: 354}
+  guid: 633c86f5c2568294f952f93fd51049bf
+  position: {x: -66, y: 677}
+  description: 
+  animationKey: Fox-Eating
+--- !u!114 &4641027980294482273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 47a8c2d34f87c8f419abf2b6ebc4a3bc
+  position: {x: -255, y: 418}
   description: 
   animationKey: Fox-Idle
+--- !u!114 &5945741184141150991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e15820ae1f346a409d8efcfec7c2656, type: 3}
+  m_Name: LogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 18de1bb7e54492b45b77f8dac1687595
+  position: {x: 198, y: 804}
+  description: 
+  message: Heresy
+--- !u!114 &6000074637834454655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 8c0268a9ae71daf43985a0cbb5bf3fda
+  position: {x: -101, y: 417.90286}
+  description: 
+  childTrue: {fileID: 8103275181752082760}
+  childFalse: {fileID: 447148171213676215}
+  conditionKey: Walking
+--- !u!114 &8103275181752082760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: b8c3f305bff10c8479f1b58d78621036
+  position: {x: -162, y: 548}
+  description: 
+  animationKey: Fox-Walk
