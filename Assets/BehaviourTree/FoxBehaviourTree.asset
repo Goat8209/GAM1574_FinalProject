@@ -38,8 +38,86 @@ MonoBehaviour:
   position: {x: 89, y: 677}
   description: 
   childTrue: {fileID: -1655303665059451928}
-  childFalse: {fileID: 5945741184141150991}
+  childFalse: {fileID: 5476470860689958321}
   conditionKey: Running
+--- !u!114 &-6659330012418106526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e15820ae1f346a409d8efcfec7c2656, type: 3}
+  m_Name: LogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: cdd37a8c584e2954d967ec3dd2d4613c
+  position: {x: 429.99994, y: 1057.7488}
+  description: 
+  message: Blasphemy
+--- !u!114 &-6145285138527410368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: fad3ce406a76de241b6cf80e0d81929e
+  position: {x: 295.27478, y: 935.2509}
+  description: 
+  childTrue: {fileID: -5865239745387493697}
+  childFalse: {fileID: -6659330012418106526}
+  conditionKey: Eating
+--- !u!114 &-5865239745387493697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 96a355a2ed46702488a679abe43d9302
+  position: {x: 224.99995, y: 1061.749}
+  description: 
+  animationKey: Fox-Eating
+--- !u!114 &-4228186610603612370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: c3de5fab355a5f94cb32a6ccdd9e662b
+  position: {x: 126.60008, y: 932.0501}
+  description: 
+  animationKey: Fox-Death
 --- !u!114 &-3698979827044425701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,7 +175,7 @@ MonoBehaviour:
   isStarted: 0
   blackboard: {fileID: 0}
   guid: 66e46c67a2ef4184c83e44e9b8b52fdb
-  position: {x: -194, y: 290}
+  position: {x: -193.99998, y: 291.61456}
   description: 
   childTrue: {fileID: 4641027980294482273}
   childFalse: {fileID: 6000074637834454655}
@@ -145,11 +223,15 @@ MonoBehaviour:
   - {fileID: 6000074637834454655}
   - {fileID: 447148171213676215}
   - {fileID: 8103275181752082760}
-  - {fileID: 767409840759696918}
   - {fileID: -7004376277972630558}
   - {fileID: -1655303665059451928}
-  - {fileID: 5945741184141150991}
   - {fileID: -3185422121757240168}
+  - {fileID: 5476470860689958321}
+  - {fileID: -4228186610603612370}
+  - {fileID: 7617494663937721443}
+  - {fileID: -6145285138527410368}
+  - {fileID: -5865239745387493697}
+  - {fileID: -6659330012418106526}
 --- !u!114 &158949722979417804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,28 +269,9 @@ MonoBehaviour:
   guid: 5a8a10c62f35fff489ebc626585234a1
   position: {x: -6, y: 548}
   description: 
-  childTrue: {fileID: 767409840759696918}
+  childTrue: {fileID: 7617494663937721443}
   childFalse: {fileID: -7004376277972630558}
-  conditionKey: Eating
---- !u!114 &767409840759696918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
-  m_Name: PlayAnimationNode
-  m_EditorClassIdentifier: 
-  state: 0
-  isStarted: 0
-  blackboard: {fileID: 0}
-  guid: 633c86f5c2568294f952f93fd51049bf
-  position: {x: -66, y: 677}
-  description: 
-  animationKey: Fox-Eating
+  conditionKey: Hunting
 --- !u!114 &4641027980294482273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -228,7 +291,7 @@ MonoBehaviour:
   position: {x: -255, y: 418}
   description: 
   animationKey: Fox-Idle
---- !u!114 &5945741184141150991
+--- !u!114 &5476470860689958321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -237,16 +300,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e15820ae1f346a409d8efcfec7c2656, type: 3}
-  m_Name: LogNode
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
   m_EditorClassIdentifier: 
   state: 0
   isStarted: 0
   blackboard: {fileID: 0}
-  guid: 18de1bb7e54492b45b77f8dac1687595
-  position: {x: 198, y: 804}
+  guid: 66480b56593ad954b877971db474f5a8
+  position: {x: 191.1, y: 804.05005}
   description: 
-  message: Heresy
+  childTrue: {fileID: -4228186610603612370}
+  childFalse: {fileID: -6145285138527410368}
+  conditionKey: Dead
 --- !u!114 &6000074637834454655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,6 +333,25 @@ MonoBehaviour:
   childTrue: {fileID: 8103275181752082760}
   childFalse: {fileID: 447148171213676215}
   conditionKey: Walking
+--- !u!114 &7617494663937721443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 277b5ae1679d8a64a9b5bb1aed1866fb
+  position: {x: -101.150055, y: 677.15015}
+  description: 
+  animationKey: Fox-Gallop
 --- !u!114 &8103275181752082760
 MonoBehaviour:
   m_ObjectHideFlags: 0

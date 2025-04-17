@@ -19,13 +19,13 @@ MonoBehaviour:
   boolData:
     entries:
     - key: Idle
-      value: 0
-    - key: Walking
       value: 1
+    - key: Walking
+      value: 0
     - key: Eating
       value: 0
     - key: Attacking
-      value: 1
+      value: 0
   vector3Data:
     entries: []
   stringData:

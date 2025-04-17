@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +17,9 @@ public class Chicken : Animal
     public float maxPeckBreak = 10;
     public float peckingTime;
 
+    Animal[] animalList;
+    bool danger = false;
+
     ChickenState state;
     public ChickenState State {  get { return state; } }
 
@@ -27,11 +31,30 @@ public class Chicken : Animal
     {
         animalType = AnimalType.Chicken;
         state = ChickenState.running;
+
+        animalList = FindObjectsByType<Animal>(FindObjectsSortMode.None);
     }
 
     private void Update()
     {
-        if (peckTimer <= 0 && !blackboard.GetValue<bool>("CanPeck"))//when the time is out the chicken pecks
+        for(int i = 0; i < animalList.Length; i++)
+        {
+            if (animalList[i].GetAnimalType != AnimalType.Chicken)
+            {
+                if (Vector3.Distance(transform.position, animalList[i].transform.position) < 50)
+                {
+                    danger = true;
+                    break;
+                }
+
+                else
+                {
+                    danger = false;
+                }
+            }
+        }
+
+        if (peckTimer <= 0 && !blackboard.GetValue<bool>("CanPeck") && !danger)//when the time is out the chicken pecks
         {
             blackboard.SetOrAddValue<bool>("CanPeck", true);
             target.IsPaused = true;

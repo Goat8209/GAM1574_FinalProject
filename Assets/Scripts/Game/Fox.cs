@@ -8,6 +8,7 @@ public enum FoxState : byte
 {
     Idle,
     Walking,
+    Hunting,
     Eating,
     Running,
     Dead
@@ -34,26 +35,29 @@ public class Fox : Animal
     private float maxEating = 6;
 
     public List<Donkey> donkeyList;
+
+    Chick[] chickList;
+    private Chick prey;
+
     private float personalSpace = 15;
 
-    private float runSpeed = 10;
-    private float walkSpeed = 4;
+    private float runSpeed = 18;
+    private float walkSpeed = 6;
 
     private FoxState state;
 
     public FoxState State { get { return state; } }
-
-    private Vector3[] haybales = { new Vector3(252.45f, 0, 396), new Vector3(239.21f, 0, 393.38f), new Vector3(228.73f, 0, 396.89f) };
 
     private void Awake()
     {
         animalType = AnimalType.Fox;
         SetState(FoxState.Idle);
         blackboard.SetValue<bool>("Walking", false);
-        blackboard.SetValue<bool>("Eating", false);
+        blackboard.SetValue<bool>("Hunting", false);
         blackboard.SetValue<bool>("Running", false);
         idleTimer = Random.Range(minIdle, maxIdle);
         hunger = Random.Range(minHunger, maxHunger);
+
     }
 
     // Update is called once per frame
@@ -94,18 +98,30 @@ public class Fox : Animal
             case FoxState.Walking:
                 if (hunger <= 0)
                 {
-                    GetComponent<NavMeshAgent>().destination = haybales[(int)Random.Range(0, 2)];//picks a random haybale to eat from and walks to it
+                    chickList = FindObjectsByType<Chick>(FindObjectsSortMode.None);
+
+                    Vector3 tempVec3 = new Vector3(0, 0, 0);
+                    
+                    for (int i = 0; i < chickList.Length; i++)
+                    {
+                        Vector3 tempChickPos = chickList[i].transform.position;
+                        if (Vector3.Distance(transform.position, tempVec3) > Vector3.Distance(transform.position, tempChickPos))
+                        {
+                            tempVec3 = tempChickPos;
+                            prey = chickList[i];
+                        }
+                    }                    
                 }
 
                 if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 5)//gets to its destination/going to haybale
                 {
                     if (state != FoxState.Running)//ignore these if the fox is running from a donkey
                     {
-                        if (hunger <= 0)// if the cow is needs to eat set state to eating
+                        if (hunger <= 0)
                         {
-                            if (state != FoxState.Eating)
+                            if (state != FoxState.Hunting)
                             {
-                                SetState(FoxState.Eating);
+                                SetState(FoxState.Hunting);
                             }
                         }
                         else if (state != FoxState.Idle)
@@ -114,6 +130,16 @@ public class Fox : Animal
                         }
                     }
                 }
+                break;
+
+            case FoxState.Hunting:
+                GetComponent<NavMeshAgent>().destination = prey.transform.position;
+                if(Vector3.Distance(transform.position, prey.transform.position) < 5)
+                {
+                    Destroy(prey);
+                    SetState(FoxState.Eating);
+                }
+                
                 break;
 
             case FoxState.Eating:
@@ -170,6 +196,9 @@ public class Fox : Animal
             case FoxState.Walking:
                 blackboard.SetValue<bool>("Walking", false);
                 break;
+            case FoxState.Hunting:
+                blackboard.SetValue<bool>("Hunting", false);
+                break;
             case FoxState.Eating:
                 blackboard.SetValue<bool>("Eating", false);
                 break;
@@ -197,12 +226,18 @@ public class Fox : Animal
                 hunger--;
                 break;
 
+            case FoxState.Hunting:
+                state = FoxState.Hunting;
+                blackboard.SetValue<bool>("Hunting", true);
+                GetComponent<NavMeshAgent>().speed = runSpeed;
+                break;
+
             case FoxState.Eating:
                 state = FoxState.Eating;
-                blackboard.SetValue<bool>("Eating", true);
                 eatingTimer = Random.Range(minEating, maxEating);
                 hunger = Random.Range(minHunger, maxHunger);
                 GetComponent<NavMeshAgent>().isStopped = true;
+                blackboard.SetValue<bool>("Eating", true);
                 break;
 
             case FoxState.Running:

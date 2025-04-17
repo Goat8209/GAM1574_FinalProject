@@ -22,9 +22,13 @@ MonoBehaviour:
       value: 1
     - key: Walking
       value: 0
-    - key: Eating
+    - key: Hunting
       value: 0
     - key: Running
+      value: 0
+    - key: Dead
+      value: 0
+    - key: Eating
       value: 0
   vector3Data:
     entries: []
