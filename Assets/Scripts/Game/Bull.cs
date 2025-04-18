@@ -35,14 +35,14 @@ public class Bull : Animal
     private float minEating = 3;
     private float maxEating = 6;
 
-    private float breedingDistance = 10;
+    private float breedingDistance = 30;
     private float breedingRefreshTimer;
-    private float breedingRefreshTime = 30;
+    private float breedingRefreshTime = 25;
     private float breedingTimer;
     private float breedingTime = 10;
     public Flock caffs;
 
-    private Vector3[] haybales = { new Vector3(252.45f, 0, 396), new Vector3(239.21f, 0, 393.38f), new Vector3(228.73f, 0, 396.89f) };
+    private Vector3[] haybales = { new Vector3(252.45f, 0, 395), new Vector3(239.21f, 0, 392.38f), new Vector3(228.73f, 0, 395.89f) };
 
     private BullState state;
 
@@ -71,6 +71,8 @@ public class Bull : Animal
             {
                 if (Vector3.Distance(partner.transform.position, transform.position) <= breedingDistance)
                 {
+                    if (caffs)
+                        caffs.IsPaused = true;
                     SetState(BullState.Breeding);
                 }
             }
@@ -82,6 +84,8 @@ public class Bull : Animal
                 idleTimer -= Time.deltaTime;
                 if (idleTimer <= 0)
                 {
+                    if(caffs)
+                        caffs.IsPaused = false;
                     SetState(BullState.Walking);
                 }
                 break;
@@ -98,11 +102,15 @@ public class Bull : Animal
                     {
                         if (state != BullState.Eating)
                         {
+                            if (caffs)
+                                caffs.IsPaused = true;
                             SetState(BullState.Eating);
                         }
                     }
                     else if (state != BullState.Idle)
                     {
+                        if (caffs)
+                            caffs.IsPaused = true;
                         SetState(BullState.Idle);
                     }
                 }
@@ -113,6 +121,8 @@ public class Bull : Animal
                 if (eatingTimer <= 0)
                 {
                     GetComponent<NavMeshAgent>().isStopped = false;
+                    if (caffs)
+                        caffs.IsPaused = false;
                     SetState(BullState.Walking);
                 }
                 break;
@@ -125,6 +135,8 @@ public class Bull : Animal
                     {
                         partner.caffs.boidsToSpawn++;
                     }
+                    if (caffs)
+                        caffs.IsPaused = false;
                     SetState(BullState.Walking);
                 }
                 break;

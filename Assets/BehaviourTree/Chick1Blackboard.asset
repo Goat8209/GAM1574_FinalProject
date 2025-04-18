@@ -19,7 +19,7 @@ MonoBehaviour:
   boolData:
     entries:
     - key: CanPeck
-      value: 0
+      value: 1
   vector3Data:
     entries: []
   stringData:

@@ -25,7 +25,7 @@ MonoBehaviour:
     - key: Hunting
       value: 0
     - key: Running
-      value: 0
+      value: 1
     - key: Dead
       value: 0
     - key: Eating

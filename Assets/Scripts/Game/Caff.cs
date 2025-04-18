@@ -15,13 +15,25 @@ public class Caff : Animal
     // Update is called once per frame
     void Update()
     {
-        if (targetBull.State == BullState.Eating && !blackboard.GetValue<bool>("Eating"))
+        if (targetBull.State == BullState.Idle && !blackboard.GetValue<bool>("Idle"))
         {
-            blackboard.SetOrAddValue<bool>("Eating", true);
-        }
-        else if (targetBull.State == BullState.Walking && blackboard.GetValue<bool>("Eating"))
-        {
+            blackboard.SetOrAddValue<bool>("Idle", true);
             blackboard.SetOrAddValue<bool>("Eating", false);
+            blackboard.SetOrAddValue<bool>("Walking", false);
+        }
+
+        else if (targetBull.State == BullState.Eating && !blackboard.GetValue<bool>("Eating"))
+        {
+            blackboard.SetOrAddValue<bool>("Idle", false);
+            blackboard.SetOrAddValue<bool>("Eating", true);
+            blackboard.SetOrAddValue<bool>("Walking", false);
+        }
+
+        else if (targetBull.State == BullState.Walking && !blackboard.GetValue<bool>("Walking"))
+        {
+            blackboard.SetOrAddValue<bool>("Idle", false);
+            blackboard.SetOrAddValue<bool>("Eating", false);
+            blackboard.SetOrAddValue<bool>("Walking", true);
         }
     }
 

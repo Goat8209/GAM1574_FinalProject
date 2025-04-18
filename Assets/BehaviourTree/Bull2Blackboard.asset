@@ -23,7 +23,7 @@ MonoBehaviour:
     - key: Walking
       value: 1
     - key: Breeding
-      value: 0
+      value: 1
     - key: Eating
       value: 0
   vector3Data:

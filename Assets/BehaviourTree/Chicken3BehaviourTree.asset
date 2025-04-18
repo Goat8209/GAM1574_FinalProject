@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda80f8de0d36a5488aa68e3075c989d, type: 3}
   m_Name: Chicken3BehaviourTree
   m_EditorClassIdentifier: 
-  blackboard: {fileID: 11400000, guid: 9a6b6e2272950994b83905342dd3c919, type: 2}
+  blackboard: {fileID: 11400000, guid: 5bc7a3f13dfef904db98a580a0991f39, type: 2}
   rootNode: {fileID: -586685742740916569}
   treeState: 0
   nodes:

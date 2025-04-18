@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8a360a5c805cc1c43b569218a4430240, type: 3}
-  m_Name: Chicken3Blackboard
+  m_Name: Calf2Blackboard
   m_EditorClassIdentifier: 
   intData:
     entries: []
@@ -18,9 +18,15 @@ MonoBehaviour:
     entries: []
   boolData:
     entries:
-    - key: CanPeck
+    - key: Idle
+      value: 0
+    - key: Walking
       value: 1
+    - key: Eating
+      value: 0
   vector3Data:
     entries: []
   stringData:
-    entries: []
+    entries:
+    - key: State
+      value: 
