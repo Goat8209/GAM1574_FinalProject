@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bda80f8de0d36a5488aa68e3075c989d, type: 3}
   m_Name: Chick3BehaviourTree
   m_EditorClassIdentifier: 
-  blackboard: {fileID: 11400000, guid: 2c6f2ce49468fbf44b2e356b43b66838, type: 2}
+  blackboard: {fileID: 11400000, guid: 57fba68f5c56b3d4da32bd400b4549f2, type: 2}
   rootNode: {fileID: 3299214477959802089}
   treeState: 0
   nodes:

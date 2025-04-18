@@ -19,13 +19,13 @@ MonoBehaviour:
   boolData:
     entries:
     - key: Idle
-      value: 1
+      value: 0
     - key: Walking
       value: 0
     - key: Hunting
       value: 0
     - key: Running
-      value: 0
+      value: 1
     - key: Dead
       value: 0
     - key: Eating

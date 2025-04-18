@@ -1,0 +1,268 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8193242102487457185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 10155bd8b59dff04b8eec9ed411d8580
+  position: {x: 12, y: 590}
+  description: 
+  animationKey: Bull-Eating
+--- !u!114 &-8054404201210182674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35fc7a87a996db4458d5b764e7044887, type: 3}
+  m_Name: RepeaterNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 21694d83e35bb884f8f1608904608b3e
+  position: {x: -79, y: -24}
+  description: 
+  child: {fileID: 7405047676042726256}
+  repeatCount: -1
+--- !u!114 &-7595389239467316442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: a038321036d5c0b43b3d31115b197011
+  position: {x: -108, y: 205}
+  description: 
+  childTrue: {fileID: -7360005023800652421}
+  childFalse: {fileID: 2525148370823151225}
+  conditionKey: Idle
+--- !u!114 &-7360005023800652421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 0351d9d923b27404ca7165b1e98db398
+  position: {x: -170.60065, y: 337.20123}
+  description: 
+  animationKey: Bull-Idle
+--- !u!114 &-6405543768349174490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ab9cc45955e6b4a925fbb7f62d3bbe, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: d8ea566eb87c56547a628a5494068c57
+  position: {x: 2, y: -251}
+  description: 
+  child: {fileID: 791310695127101548}
+--- !u!114 &-6304565248527363996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 641b74f7e970a194380b0b5600a9d561
+  position: {x: 73, y: 462}
+  description: 
+  childTrue: {fileID: -8193242102487457185}
+  childFalse: {fileID: 8543266912904583414}
+  conditionKey: Eating
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda80f8de0d36a5488aa68e3075c989d, type: 3}
+  m_Name: Calf2BehaviourTree
+  m_EditorClassIdentifier: 
+  blackboard: {fileID: 11400000, guid: 548e4c4e3fb34ee4bb05641e6c3e227f, type: 2}
+  rootNode: {fileID: -6405543768349174490}
+  treeState: 0
+  nodes:
+  - {fileID: -6405543768349174490}
+  - {fileID: 1994118453133332709}
+  - {fileID: 7405047676042726256}
+  - {fileID: 2525148370823151225}
+  - {fileID: 1346073335258375784}
+  - {fileID: -6304565248527363996}
+  - {fileID: -8193242102487457185}
+  - {fileID: -8054404201210182674}
+  - {fileID: 791310695127101548}
+  - {fileID: -7595389239467316442}
+  - {fileID: -7360005023800652421}
+  - {fileID: 8543266912904583414}
+--- !u!114 &791310695127101548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996b50878de65743a31015986ad0e36, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: a35b499f055eb9f44a6c24ecee905679
+  position: {x: 2, y: -154}
+  description: 
+  children:
+  - {fileID: -8054404201210182674}
+  - {fileID: 1994118453133332709}
+--- !u!114 &1346073335258375784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ff6bae773798134ea68be5be9a3b8c2, type: 3}
+  m_Name: PlayAnimationNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 5ef7d921f6f9e744d9f03f6516242c2b
+  position: {x: -78.99998, y: 460.39938}
+  description: 
+  animationKey: Bull-Walk
+--- !u!114 &1994118453133332709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e15820ae1f346a409d8efcfec7c2656, type: 3}
+  m_Name: LogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: aa18b1fbc1fe57e41bf698fb38543ca0
+  position: {x: 80, y: -25}
+  description: 
+  message: I am a Bull
+--- !u!114 &2525148370823151225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b024b6495757224aa3b5cdc0f6a40ab, type: 3}
+  m_Name: ConditionNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 7db4d35f78375584f8ab043380beb167
+  position: {x: -17, y: 334}
+  description: 
+  childTrue: {fileID: 1346073335258375784}
+  childFalse: {fileID: -6304565248527363996}
+  conditionKey: Walking
+--- !u!114 &7405047676042726256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3996b50878de65743a31015986ad0e36, type: 3}
+  m_Name: SequencerNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 6f709dd26754fcf4993ab6d3fc3b57ff
+  position: {x: -79, y: 79}
+  description: 
+  children:
+  - {fileID: -7595389239467316442}
+--- !u!114 &8543266912904583414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e15820ae1f346a409d8efcfec7c2656, type: 3}
+  m_Name: LogNode
+  m_EditorClassIdentifier: 
+  state: 0
+  isStarted: 0
+  blackboard: {fileID: 0}
+  guid: 3d67d81b801a56549a3f1ace4778f216
+  position: {x: 198.56042, y: 583.9876}
+  description: 
+  message: Blasphemy

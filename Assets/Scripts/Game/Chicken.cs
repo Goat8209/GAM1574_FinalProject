@@ -41,7 +41,7 @@ public class Chicken : Animal
         {
             if (animalList[i].GetAnimalType != AnimalType.Chicken)
             {
-                if (Vector3.Distance(transform.position, animalList[i].transform.position) < 50)
+                if (Vector3.Distance(transform.position, animalList[i].transform.position) < 40)
                 {
                     danger = true;
                     break;

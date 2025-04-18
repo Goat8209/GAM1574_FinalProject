@@ -37,9 +37,9 @@ public class Donkey : Animal
 
     //if there are foxes in the donkeys personal space its sanity goes down
     private float sanity;
-    private float minSanity = 15;
-    private float maxSanity = 20;
-    private float personalSpace = 20;
+    private float minSanity = 10;
+    private float maxSanity = 15;
+    private float personalSpace = 35;
     public List<Fox> foxList;
     private Fox targetFox;
 
