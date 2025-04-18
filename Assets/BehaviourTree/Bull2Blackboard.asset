@@ -19,9 +19,9 @@ MonoBehaviour:
   boolData:
     entries:
     - key: Idle
-      value: 1
-    - key: Walking
       value: 0
+    - key: Walking
+      value: 1
     - key: Breeding
       value: 0
     - key: Eating

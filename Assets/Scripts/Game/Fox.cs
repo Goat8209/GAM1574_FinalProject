@@ -102,15 +102,22 @@ public class Fox : Animal
 
                     Vector3 tempVec3 = new Vector3(0, 0, 0);
                     
-                    for (int i = 0; i < chickList.Length; i++)
+                    if (chickList.Length > 0)//if there are no chickens the fox eats dirt. if there are the fox will hunt down the closest chicken
                     {
-                        Vector3 tempChickPos = chickList[i].transform.position;
-                        if (Vector3.Distance(transform.position, tempVec3) > Vector3.Distance(transform.position, tempChickPos))
+                        for (int i = 0; i < chickList.Length; i++)
                         {
-                            tempVec3 = tempChickPos;
-                            prey = chickList[i];
+                            Vector3 tempChickPos = chickList[i].transform.position;
+                            if (Vector3.Distance(transform.position, tempVec3) > Vector3.Distance(transform.position, tempChickPos))
+                            {
+                                tempVec3 = tempChickPos;
+                                prey = chickList[i];
+                            }
                         }
-                    }                    
+                    }
+                    else
+                    {
+                        SetState(FoxState.Eating);
+                    }
                 }
 
                 if (Vector3.Distance(transform.position, GetComponent<NavMeshAgent>().destination) <= 5)//gets to its destination/going to haybale
@@ -133,13 +140,15 @@ public class Fox : Animal
                 break;
 
             case FoxState.Hunting:
-                GetComponent<NavMeshAgent>().destination = prey.transform.position;
-                if(Vector3.Distance(transform.position, prey.transform.position) < 5)
+                if (prey != null)
                 {
-                    Destroy(prey);
-                    SetState(FoxState.Eating);
+                    GetComponent<NavMeshAgent>().destination = prey.transform.position;
+                    if (Vector3.Distance(transform.position, prey.transform.position) < 5)
+                    {
+                        Destroy(prey);
+                        SetState(FoxState.Eating);
+                    }
                 }
-                
                 break;
 
             case FoxState.Eating:
@@ -147,6 +156,7 @@ public class Fox : Animal
                 if (eatingTimer <= 0)
                 {
                     GetComponent<NavMeshAgent>().isStopped = false;
+                    hunger = Random.Range(minHunger, maxHunger);
                     SetState(FoxState.Walking);
                 }
                 break;
@@ -162,10 +172,10 @@ public class Fox : Animal
                             {
                                 GetComponent<NavMeshAgent>().destination = new Vector3(Random.Range(175, 300), 0, Random.Range(250, 400));
                             }
-                            if (i.State != DonkeyState.Attacking)//donkey stops attacking, fox stops running
-                            {
-                                SetState(FoxState.Walking);
-                            }
+                        }
+                        if (i.State != DonkeyState.Attacking)//donkey stops attacking, fox stops running
+                        {
+                            SetState(FoxState.Walking);
                         }
                     }
                 }
